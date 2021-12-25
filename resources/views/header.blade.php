@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <base href="/">
     <title>Музыкальный магазин</title>
     <link rel="stylesheet" type="text/css" href={{asset("/css/app.css")}}>
@@ -14,6 +15,13 @@
         src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
         crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
         *{
@@ -173,7 +181,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <form action="/index.php" method="post">
+                    <form action="mainPage" method="get">
                         <button class="btn btn-primary" type="submit" style="background-color: red">Главная страница
                         </button>
                     </form>
@@ -188,33 +196,36 @@
 <div id="classification">
 
     <p style="text-align: center"><u>Выберите категорию:</u></p>
+    <?php $catList = App\Models\Category::select('id', 'cat', 'tabl')->get() ?>
     <form action="/index.php" method="post">
         <button class="btn btn-primary" type="submit">Все</button>
-
-        <br>
-
-        <br>
-        <br>
-        <p id="vvod">Показать товары дороже заданной цены:</p>
-        <form action="productListOver" method="post">
-            <p id="vvod">
-                <input name="dor" type="number" size="40" style="margin: auto">
-            </p>
-            <p id="vvod">
-                <input type="submit" value="Показать">
-            </p>
-        </form>
-
-        <p id="vvod">Показать товары дешевле заданной цены:</p>
-        <form action="productListLess" method="post">
-            <p id="vvod">
-                <input name="desh" type="number" size="40" style="margin: auto">
-            </p>
-            <p id="vvod">
-                <input type="submit" value="Показать">
-            </p>
-        </form>
     </form>
+    <br>
+    @foreach ($catList as $c):
+        <form action="/good/{{$c['tabl']}}" method="post">
+            <button class="btn btn-primary" type="submit">{{$c['cat']}}</button>
+        </form>
+    @endforeach
+        <br>
+        <br>
+        <p>Показать товары дороже заданной цены:</p>
+        <form action="/getListOver" method="post">
+            {{ csrf_field() }}
+            <p>
+                <input  name="dor" type="number" size="40" style="margin: auto">
+                <br>
+                <input type="submit" value="Показать">
+            </p>
+        </form>
+        <p>Показать товары дешевле заданной цены:</p>
+        <form action="/getListLess" method="post">
+            {{ csrf_field() }}
+            <p>
+                <input  name="desh" type="number" size="40" style="margin: auto">
+                <br>
+                <input type="submit" value="Показать">
+            </p>
+        </form>
 </div>
 
 <div id="content">

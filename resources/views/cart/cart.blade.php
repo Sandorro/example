@@ -17,7 +17,9 @@
                 <td class="stolbec"><img src="{{$s['image']}}" alt="Изображение товара" width="200"></td>
                 <td class="stolbec">{{$s["dubler"]}}</td>
                 <td class="stolbec">
-                    <button type="button" class="deleteFromCart" data-id="{{$s["kolvo"]}}">Удалить из корзины</button>
+                    <form method="post" class="deleteFromCart" data-id="{{$s["kolvo"]}}">
+                    <input type="button" value="Удалить из корзины">
+                    </form>
                 </td>
             </tr>
             @endforeach

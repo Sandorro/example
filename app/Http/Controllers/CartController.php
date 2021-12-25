@@ -56,7 +56,6 @@ class CartController extends Controller
             $arr[0]['kolvo']=count($allSession)+1;
             $arr[0]['dubler']=1;
             foreach ($allSession as &$p) {
-                $p['dubler'] = 1;
                 if ((($p['categ'] == $request->tabl) and ($p['id']==$request->id)))
                 {
                     $p['dubler'] = $p['dubler'] +1;

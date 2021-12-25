@@ -94,7 +94,7 @@
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                                     Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
                                     <a href="mainPage">На чистый PHP</a>
-                                    <?php session_start(); ?>
+<!--                                    --><?php //session_start(); ?>
 <!--                                    --><?php //dd($_SESSION); ?>
                                     <?php $catlist = App\Models\Category::select('id', 'cat', 'tabl')->get(); ?>
 <?php //dd($catlist) ?>
@@ -105,24 +105,24 @@
                                         <a href="/good/{{$c['tabl']}}">{{$c['cat']}}</a>
                                         <br>
                                     @endforeach
-                                    <p>Показать товары дороже заданной цены:</p>
-                                    <form action="getListOver" method="post">
-                                        {{ csrf_field() }}
-                                        <p>
-                                            <input  name="dor" type="number" size="40" style="margin: auto">
-                                            <br>
-                                            <input type="submit" value="Показать">
-                                        </p>
-                                    </form>
-                                    <p>Показать товары дешевле заданной цены:</p>
-                                    <form action="getListLess" method="post">
-                                        {{ csrf_field() }}
-                                        <p>
-                                            <input  name="desh" type="number" size="40" style="margin: auto">
-                                            <br>
-                                            <input type="submit" value="Показать">
-                                        </p>
-                                    </form>
+{{--                                    <p>Показать товары дороже заданной цены:</p>--}}
+{{--                                    <form action="getListOver" method="post">--}}
+{{--                                        {{ csrf_field() }}--}}
+{{--                                        <p>--}}
+{{--                                            <input  name="dor" type="number" size="40" style="margin: auto">--}}
+{{--                                            <br>--}}
+{{--                                            <input type="submit" value="Показать">--}}
+{{--                                        </p>--}}
+{{--                                    </form>--}}
+{{--                                    <p>Показать товары дешевле заданной цены:</p>--}}
+{{--                                    <form action="getListLess" method="post">--}}
+{{--                                        {{ csrf_field() }}--}}
+{{--                                        <p>--}}
+{{--                                            <input  name="desh" type="number" size="40" style="margin: auto">--}}
+{{--                                            <br>--}}
+{{--                                            <input type="submit" value="Показать">--}}
+{{--                                        </p>--}}
+{{--                                    </form>--}}
                                 </div>
                             </div>
                         </div>
