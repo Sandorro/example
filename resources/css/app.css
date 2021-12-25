@@ -1,0 +1,11 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.stroka{
+    border: 1px solid #000000;
+}
+
+.stolbec{
+    border: 1px solid #000000;
+}
