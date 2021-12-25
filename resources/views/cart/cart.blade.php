@@ -1,7 +1,5 @@
-@extends('/layouts/app')
-@section('content')
-<body>
-<div>
+@extends('header')
+@section('con')
 <h1>Корзина</h1>
     @isset($arr)
         <table id="tablica">
@@ -30,7 +28,6 @@
     <button id="price">Посчитать общую стоимость</button>
     <h3 id="price-output">---</h3>
     <a href="order" class="btn btn-primary">Оформить заказ!</a>
-</div>
 @endsection
 
 {{--@if ((session()->has('auth')))--}}

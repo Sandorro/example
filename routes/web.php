@@ -42,7 +42,7 @@ Route::post('getListOver', 'App\Http\Controllers\GoodController@getListOver');
 
 Route::post('getListLess', 'App\Http\Controllers\GoodController@getListLess');
 
-Route::get('/cart', 'App\Http\Controllers\CartController@index')->name('cartIndex');
+Route::post('/cart', 'App\Http\Controllers\CartController@index')->name('cartIndex');
 
 Route::post('/add-to-cart', 'App\Http\Controllers\CartController@addToCart')->name('addToCart');
 
