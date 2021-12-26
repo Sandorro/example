@@ -48,6 +48,8 @@ Route::post('/add-to-cart', 'App\Http\Controllers\CartController@addToCart')->na
 
 Route::post('/deleteFromCart', 'App\Http\Controllers\CartController@deleteFromCart')->name('deleteFromCart');
 
+Route::get('/deleteFromCart', 'App\Http\Controllers\CartController@deleteFromCart')->name('deleteFromCart');
+
 Route::post('/cart/schAjax', 'App\Http\Controllers\CartController@actionSchAjax')->name('actionSchAjax');
 
 Route::post('/cart/price', 'App\Http\Controllers\CartController@actionPrice')->name('actionPrice');

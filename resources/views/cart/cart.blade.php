@@ -18,6 +18,8 @@
                 <td class="stolbec">{{$s["dubler"]}}</td>
                 <td class="stolbec">
                     <form method="post" class="deleteFromCart" data-id="{{$s["kolvo"]}}">
+                        @csrf
+                        {{method_field('POST')}}
                     <input type="button" value="Удалить из корзины">
                     </form>
                 </td>

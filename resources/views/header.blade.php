@@ -143,15 +143,19 @@
     <div class="div-table">
         <div class="div-table-cell">
             <h1 id="nazvanie">Музыкальный магазин</h1>
-
-            <p id="descript">Я вас категорически приветствую!</p>
-
+            @if (Route::has('login'))
+                @auth
+                    <p id="descript">Я вас категорически приветствую, {{ Auth::user()->name }}!</p>
+            @else
+                <p id="descript">Я вас категорически приветствую!</p>
+                @endauth
+            @endif
             <ul class="nav  nav-justified">
                 @if (Route::has('login'))
                     @auth
                 <li class="nav-item">
-                    <form action="./dashboard" method="post">
-                        @CSRF
+                    <form action="{{ route('dashboard') }}" method="get">
+                        {{ csrf_field() }}
                         <button class="btn btn-primary" type="submit" style="background-color: red">Личный кабинет
                         </button>
                     </form>
@@ -202,7 +206,7 @@
     </form>
     <br>
     @foreach ($catList as $c):
-        <form action="/good/{{$c['tabl']}}" method="post">
+        <form action="/good/{{$c['tabl']}}" method="get">
             <button class="btn btn-primary" type="submit">{{$c['cat']}}</button>
         </form>
     @endforeach

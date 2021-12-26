@@ -19,12 +19,11 @@ class GoodController extends Controller
     public function index($id, $tabl)
     {
         if ($tabl == "guitars") {
-        $opisanie = Guitar::where('id', $id)->get();
+        $opisanie = Guitar::where('id', $id)->get()->toArray();
     } elseif ($tabl == "sints") {
 //            dd($id);
-        $opisanie = Sint::where('id', $id)->get();
+        $opisanie = Sint::where('id', $id)->get()->toArray();
     }
-//        dd($opisanie);
 
 
         return view('good', compact('opisanie', 'id', 'tabl'));

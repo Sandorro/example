@@ -38,9 +38,8 @@ class MainController
         $arr = array_merge($guitarArr, $sintArr);
         shuffle($arr);
 
-
 //        dd($arr);
-        return view('welcome', compact('arr'));
+        return view('mainPage')->with(compact('arr'));
     }
 
     public function categories(){

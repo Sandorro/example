@@ -1,10 +1,9 @@
 @extends('header')
 
     @section('con')
-        {{$dlina = count($arr)}}
-        {{$kolstrok = intdiv($dlina, 4)}}
-        {{$ostatok = fmod($dlina, 4)}}
-
+        <?php $dlina = count($arr) ?>
+        <?php $kolstrok = intdiv($dlina, 4)?>
+        <?php $ostatok = fmod($dlina, 4)?>
         <table class="table table-striped">
             @for($a=0; $a<$kolstrok; $a++):
                 <tr class="stroka">

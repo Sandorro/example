@@ -1,26 +1,11 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('header')
+@section('con')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                <x-jet-welcome />
-                <h1>Hello</h1>
-            </div>
-        </div>
-    </div>
-</x-app-layout>
-
-<h3>Добро пожаловать!</h3>
-
-
+<h3>Добро пожаловать в личный кабинет!</h3>
+<br>
+<br>
+<h5>Ваша история заказов:</h5>
     <?php $orderList = App\Models\Order::getOrders(); ?>
-    {{var_dump($orderList)}}
-{{--    {{dd($orderList)}}--}}
 <table border="2" class="table table-striped">
     <th class="stolbec">Дата заказа</th>
     <th class="stolbec">Товары</th>
@@ -35,4 +20,5 @@
     </tr>
     @endforeach
 </table>
-<a href="/changeLogin">Сменить логин</a>
+
+@endsection

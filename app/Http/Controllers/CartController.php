@@ -84,9 +84,19 @@ class CartController extends Controller
         $arr = Session::get('cart');
         $id = intval($id);
 
-        unset($arr[$id-1]);
-        session(["cart" => $arr]);
+        foreach ($arr as $key => &$product) {
+            if ($product['kolvo'] == $id){
+                if ($product['dubler'] != 1){
+                    $product['dubler'] = $product['dubler'] - 1;
+                    session(["cart" => $arr]);
+                }
+                else {
+                    unset($arr[$id - 1]);
+                    session(["cart" => $arr]);
+                }
+            }
 //        session()->forget(['cart']);
+        }
         return back();
     }
 
