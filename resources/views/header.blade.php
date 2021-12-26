@@ -185,7 +185,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <form action="mainPage" method="get">
+                    <form action="/mainPage" method="get">
                         {{ csrf_field() }}
                         <button class="btn btn-primary" type="submit" style="background-color: red">Главная страница
                         </button>
@@ -202,14 +202,15 @@
 
     <p style="text-align: center"><u>Выберите категорию:</u></p>
     <?php $catList = App\Models\Category::select('id', 'cat', 'tabl')->get() ?>
-    <form action="/index.php" method="post">
+    <form action="/mainPage" method="get">
         <button class="btn btn-primary" type="submit">Все</button>
     </form>
     <br>
-    @foreach ($catList as $c):
+    @foreach ($catList as $c)
         <form action="/good/{{$c['tabl']}}" method="get">
             <button class="btn btn-primary" type="submit">{{$c['cat']}}</button>
         </form>
+        <br>
     @endforeach
         <br>
         <br>

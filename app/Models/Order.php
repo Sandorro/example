@@ -29,7 +29,7 @@ class Order
 
     public static function getOrders(){
         $userDB = auth()->user();
-        $results = DB::select("SELECT user, data, tovars, price FROM orders");
+        $results = DB::table('orders')->where('user', '=', $userDB['name'])->get();
 //        $results = Order::select('tovars', 'price')->all();
         return $results;
     }

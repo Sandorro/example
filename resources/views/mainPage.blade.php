@@ -3,14 +3,18 @@
     Главная страница
 @endsection
     @section('con')
-        <?php $dlina = count($arr) ?>
-        <?php $kolstrok = intdiv($dlina, 4)?>
-        <?php $ostatok = fmod($dlina, 4)?>
+        @php
+        $dlina = count($arr);
+        $kolstrok = intdiv($dlina, 4);
+        $ostatok = fmod($dlina, 4);
+        @endphp
         <table class="table table-striped">
-            @for($a=0; $a<$kolstrok; $a++):
+            @for($a=0; $a<$kolstrok; $a++)
                 <tr class="stroka">
-                    {{$i = 0}}
-                    @while($i<=3):
+                    @php
+                      $i = 0;
+                    @endphp
+                    @while($i<=3)
                         <td class="stolbec">
                             <a href="good/{{$arr[$i+$a*4]['nom']}}/{{$arr[$i+$a*4]['categ']}}"><img src="{{$arr[$i+$a*4]['image']}}" width="200" alt="Изображение товара"></a>
                             <p><b>{{$arr[$i+$a*4]["header"]}}</b></p>
@@ -19,14 +23,18 @@
                                 {{ csrf_field() }}
                                 Добавить в корзину</button>
                         </td>
-                        {{$i++}}
+                        @php
+                            $i++;
+                        @endphp
                     @endwhile
                 </tr>
             @endfor
-            @if ($ostatok != 0):
+            @if ($ostatok != 0)
                 <tr class="stroka">
-                    {{$i = 0}}
-                    @while($i<$ostatok):
+                    @php
+                      $i = 0;
+                    @endphp
+                    @while($i<$ostatok)
                         <td class="stolbec">
                             <a href="good/{{$arr[$i+$a*4]['nom']}}/{{$arr[$i+$a*4]['categ']}}"><img src="{{$arr[$i+$a*4]['image']}}" width="200" alt="Изображение товара"></a>
                             <p><b>{{$arr[$i+$a*4]["header"]}}</b></p>
@@ -35,7 +43,9 @@
                                 {{ csrf_field() }}
                                 Добавить в корзину</button>
                         </td>
-                        {{$i++}}
+                        @php
+                            $i++;
+                        @endphp
                     @endwhile
                 </tr>
             @endif

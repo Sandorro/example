@@ -7,8 +7,13 @@
 <h3>Добро пожаловать в личный кабинет!</h3>
 <br>
 <br>
-<h5>Ваша история заказов:</h5>
+
     <?php $orderList = App\Models\Order::getOrders(); ?>
+@if(count($orderList)==0)
+    <h5>Пока что Вы ничего не заказали. Исправьте это!</h5>
+
+@else($orderList)
+    <h5>Ваша история заказов:</h5>
 <table border="2" class="table table-striped">
     <th class="stolbec">Дата заказа</th>
     <th class="stolbec">Товары</th>
@@ -23,5 +28,5 @@
     </tr>
     @endforeach
 </table>
-
+@endif
 @endsection
