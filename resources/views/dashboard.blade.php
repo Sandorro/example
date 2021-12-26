@@ -1,4 +1,7 @@
 @extends('header')
+@section('tit')
+    Личный кабинет
+@endsection
 @section('con')
 
 <h3>Добро пожаловать в личный кабинет!</h3>

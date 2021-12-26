@@ -1,4 +1,7 @@
 @extends('header')
+@section('tit')
+    Описание товара
+@endsection
 @section('con')
 @isset($opisanie)
     <h1>{{$opisanie[0]["header"]}}</h1>

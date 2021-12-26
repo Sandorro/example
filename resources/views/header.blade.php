@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <base href="/">
-    <title>Музыкальный магазин</title>
+    <title>@yield('tit')</title>
     <link rel="stylesheet" type="text/css" href={{asset("/css/app.css")}}>
 
     <link rel="icon" href="././znak.ico" type="image/x-icon">
@@ -186,6 +186,7 @@
 
                 <li class="nav-item">
                     <form action="mainPage" method="get">
+                        {{ csrf_field() }}
                         <button class="btn btn-primary" type="submit" style="background-color: red">Главная страница
                         </button>
                     </form>

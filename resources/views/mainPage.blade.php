@@ -1,5 +1,7 @@
 @extends('header')
-
+@section('tit')
+    Главная страница
+@endsection
     @section('con')
         <?php $dlina = count($arr) ?>
         <?php $kolstrok = intdiv($dlina, 4)?>

@@ -1,4 +1,7 @@
 @extends('header')
+@section('tit')
+    Корзина
+@endsection
 @section('con')
 <h1>Корзина</h1>
     @isset($arr)
