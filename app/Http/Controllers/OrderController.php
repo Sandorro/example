@@ -7,5 +7,6 @@ class OrderController
 {
     public function index(){
         Order::saveOrder();
+        return view('order');
     }
 }

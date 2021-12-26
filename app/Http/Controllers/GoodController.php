@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Good;
 use App\Models\Guitar;
+use App\Models\Category;
 use App\Models\Sint;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -32,8 +33,9 @@ class GoodController extends Controller
     public function clas($tabl)
     {
         $goodArr = new \Illuminate\Database\Eloquent\Collection();
+        $cat = Category::select('cat')->where('tabl', '=', $tabl)->first();
         if ($tabl == "guitars") {
-            $goodArr = Guitar::select('header', 'price')->paginate(20);
+            $goodArr = Guitar::select('header', 'price', 'image')->paginate(20);
             $arr = [];
             $i = 0;
             foreach ($goodArr as $g) {
@@ -46,7 +48,7 @@ class GoodController extends Controller
             }
         }
         if ($tabl == "sints") {
-            $goodArr = Sint::select('header', 'price')->paginate(20);
+            $goodArr = Sint::select('header', 'price', 'image')->paginate(20);
             $arr = [];
             $i = 0;
             foreach ($goodArr as $g) {
@@ -63,7 +65,8 @@ class GoodController extends Controller
 //        }
 
         shuffle($arr);
-        return view('clas', compact('arr'));
+
+        return view('clas', compact('arr', 'cat'));
 
 //        $sortirovka = Good::classification($tabl);
 //        dd($sortirovka);
@@ -71,12 +74,11 @@ class GoodController extends Controller
 
     public function getListOver(Request $request)
     {
-        var_dump($request->dor);
         $cen = $request->input('dor');
         $cen = intval($cen);
 //        dd($cen);
-        $guitarCollection = Guitar::select('header', 'price')->where('price', '>', $cen)->paginate(20);
-        $sintCollection = Sint::select('header', 'price')->where('price', '>', $cen)->paginate(20);
+        $guitarCollection = Guitar::select('header', 'price', 'image')->where('price', '>', $cen)->paginate(20);
+        $sintCollection = Sint::select('header', 'price', 'image')->where('price', '>', $cen)->paginate(20);
         $allCollection = new \Illuminate\Database\Eloquent\Collection;
         $everything = $allCollection->merge($guitarCollection)->merge($sintCollection);
 //        $arr = $guitarCollection->toArray();
@@ -86,6 +88,7 @@ class GoodController extends Controller
             $guitarArr[$i]['nom'] = $i+1;
             $guitarArr[$i]['header'] = $g->header;
             $guitarArr[$i]['price'] = $g->price;
+            $guitarArr[$i]['image'] = $g->image;
             $guitarArr[$i]['categ'] = "guitars";
             $i = $i + 1;
         }
@@ -95,23 +98,24 @@ class GoodController extends Controller
             $sintArr[$i]['nom'] = $i+1;
             $sintArr[$i]['header'] = $g->header;
             $sintArr[$i]['price'] = $g->price;
+            $sintArr[$i]['image'] = $g->image;
             $sintArr[$i]['categ'] = "sints";
             $i = $i + 1;
         }
 
         $arr = array_merge($guitarArr, $sintArr);
         shuffle($arr);
-        return view('doroge', compact('arr'));
+        $moreOrLess = "Дороже";
+        return view('doroge', compact('arr', 'moreOrLess'));
     }
 
     public function getListLess(Request $request)
     {
-        var_dump($request->desh);
         $cen = $request->input('desh');
         $cen = intval($cen);
 //        dd($cen);
-        $guitarCollection = Guitar::select('header', 'price')->where('price', '<', $cen)->paginate(20);
-        $sintCollection = Sint::select('header', 'price')->where('price', '<', $cen)->paginate(20);
+        $guitarCollection = Guitar::select('header', 'price', 'image')->where('price', '<', $cen)->paginate(20);
+        $sintCollection = Sint::select('header', 'price', 'image')->where('price', '<', $cen)->paginate(20);
         $allCollection = new \Illuminate\Database\Eloquent\Collection;
         $everything = $allCollection->merge($guitarCollection)->merge($sintCollection);
 //        $arr = $guitarCollection->toArray();
@@ -121,6 +125,7 @@ class GoodController extends Controller
             $guitarArr[$i]['nom'] = $i+1;
             $guitarArr[$i]['header'] = $g->header;
             $guitarArr[$i]['price'] = $g->price;
+            $guitarArr[$i]['image'] = $g->image;
             $guitarArr[$i]['categ'] = "guitars";
             $i = $i + 1;
         }
@@ -130,13 +135,15 @@ class GoodController extends Controller
             $sintArr[$i]['nom'] = $i+1;
             $sintArr[$i]['header'] = $g->header;
             $sintArr[$i]['price'] = $g->price;
+            $sintArr[$i]['image'] = $g->image;
             $sintArr[$i]['categ'] = "sints";
             $i = $i + 1;
         }
 
         $arr = array_merge($guitarArr, $sintArr);
         shuffle($arr);
-        return view('doroge', compact('arr'));
+        $moreOrLess = "Дешевле";
+        return view('doroge', compact('arr', 'moreOrLess'));
     }
 
     public function clean(){

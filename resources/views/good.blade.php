@@ -6,7 +6,7 @@
 @isset($opisanie)
     <h1>{{$opisanie[0]["header"]}}</h1>
     <img src="{{$opisanie[0]["image"]}}" alt="Изображение товара" style="margin: auto" width="500">
-    <button type="submit" class="addToCart" data-id="{{$id}}" data-tabl="{{$tabl}}" name="dob">
+    <button type="submit" class="addToCart btn-default" data-id="{{$id}}" data-tabl="{{$tabl}}" name="dob">
         {{ csrf_field() }}
         Добавить в корзину</button>
     <table class="table">
@@ -19,7 +19,7 @@
                 <td class="stolbec"><b>Страна-производитель</b></td>
                 <td class="stolbec">{{$g["country"]}}</td>
             </tr>
-            @if ($tabl == "guitars"):
+            @if ($tabl == "guitars")
             <tr>
                 <td class="stolbec"><b>Материал струн</b></td>
                 <td class="stolbec">{{$g["strun"]}}</td>
