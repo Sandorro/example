@@ -215,7 +215,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <form action="/mainPage" method="get">
+                    <form action="/" method="get">
                         {{ csrf_field() }}
                         <button class="btn btn-primary" type="submit" style="background-color: red">Главная страница
                         </button>
@@ -238,7 +238,7 @@
             Выберите категорию
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a href="/mainPage" class="dropdown-item">Все</a>
+            <a href="/" class="dropdown-item">Все</a>
             @foreach ($catList as $c)
             <a class="dropdown-item" href="/good/{{$c['tabl']}}">{{$c['cat']}}</a>
             @endforeach

@@ -20,8 +20,11 @@ class Order
             settype($p["price"], "integer");
             array_push($cen, $p['price']);
             array_push($tov, $p['header']);
+            $tov[] .= " (штук: ";
+            $tov[] .= $p['dubler'];
+            $tov[] .= ")";
         }
-        $tovDB = implode(' ', $tov);
+        $tovDB = implode('', $tov);
         $cenDB = array_sum($cen);
 
         return Db::insert('INSERT INTO orders (user, data, tovars, price) values (?, ?, ?, ?)', [$userDB, $ddd, $tovDB, $cenDB]);
@@ -31,6 +34,7 @@ class Order
         $userDB = auth()->user();
         $results = DB::table('orders')->where('user', '=', $userDB['name'])->get();
 //        $results = Order::select('tovars', 'price')->all();
+
         return $results;
     }
 }

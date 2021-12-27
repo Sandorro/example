@@ -1,3 +1,4 @@
+<?php header("Content-Type: text/plain; charset=utf-8"); ?>
 @extends('header')
 @section('tit')
     Личный кабинет
@@ -22,7 +23,8 @@
     <tr class="stroka">
         <td class="stolbec">{{$o->data}}</td>
         <td class="stolbec">
-            {{$o->tovars}}
+            <?php $perenos = str_replace(')', ")\n", $o->tovars); ?>
+            <?php echo nl2br($perenos); ?>
         </td>
         <td class="stolbec">{{$o->price}}</td>
     </tr>

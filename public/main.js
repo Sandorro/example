@@ -43,7 +43,7 @@ $(document).ready(function () {
             },
             success: (data) => {
                 console.log(data);
-                // $("#tablica").html(data);
+                $("#tablica").replaceWith(data);
             },
             error: function (msg) {
                 alert('Ошибка');

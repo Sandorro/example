@@ -97,7 +97,7 @@ class CartController extends Controller
             }
 //        session()->forget(['cart']);
         }
-        return back();
+        return false;
     }
 
     public function actionSchAjax(){

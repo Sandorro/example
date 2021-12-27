@@ -1,6 +1,6 @@
 @extends('header')
 @section('tit')
-    {{$moreOrLess}}
+    {{$cat["cat"]}}
 @endsection
 @section('con')
 @isset($arr)
